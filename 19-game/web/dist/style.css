@@ -1,0 +1,28 @@
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100svh;
+  position: relative;
+}
+
+canvas {
+  border: 2px solid black;
+}
+
+#wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  image-rendering: pixelated;
+}
+
+#canvasWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  align-self: center;
+}
