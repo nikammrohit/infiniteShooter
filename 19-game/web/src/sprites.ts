@@ -51,9 +51,9 @@ export const SPRITES_32: SpritePreset = {
   floor: {
     slit: [
       {
-        start: new Vector(),
-        size: new Values(),
-        offset: new Values(),
+        start: new Vector(0, 0),
+        size: new Values(0, 0),
+        offset: new Values(0, 0),
       }
     ],
     quad: [
@@ -68,11 +68,29 @@ export const SPRITES_32: SpritePreset = {
   player: {
     idle: [
       {
-        //vector values
+        start: new Vector(29, 47),
+        size: new Vector(66, 96),
+        //offset:
       }
     ],
-    //talk
-    //reload
+    talk: [
+      {
+        start: new Vector(29, 143),
+        size: new Vector(66, 192),
+        //offset:
+      },
+      {
+        start: new Vector(125, 143),
+        size: new Vector(162, 192),
+        //offset:
+      }
+    ],
+    reload: [
+      {
+        start: new Vector(29, 239),
+        size: new Vector(66, 288),
+      }
+    ]
     //etc...
   },
   //shield

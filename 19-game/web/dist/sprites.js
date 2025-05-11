@@ -7,9 +7,9 @@ exports.SPRITES_32 = {
     floor: {
         slit: [
             {
-                start: new vector_js_1.Vector(),
-                size: new Values(),
-                offset: new Values(),
+                start: new vector_js_1.Vector(0, 0),
+                size: new Values(0, 0),
+                offset: new Values(0, 0),
             }
         ],
         quad: [
@@ -24,11 +24,29 @@ exports.SPRITES_32 = {
     player: {
         idle: [
             {
-            //vector values
+                start: new vector_js_1.Vector(29, 47),
+                size: new vector_js_1.Vector(66, 96),
+                //offset:
             }
         ],
-        //talk
-        //reload
+        talk: [
+            {
+                start: new vector_js_1.Vector(29, 143),
+                size: new vector_js_1.Vector(66, 192),
+                //offset:
+            },
+            {
+                start: new vector_js_1.Vector(125, 143),
+                size: new vector_js_1.Vector(162, 192),
+                //offset:
+            }
+        ],
+        reload: [
+            {
+                start: new vector_js_1.Vector(29, 239),
+                size: new vector_js_1.Vector(66, 288),
+            }
+        ]
         //etc...
     },
     //shield
