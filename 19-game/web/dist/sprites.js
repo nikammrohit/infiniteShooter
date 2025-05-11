@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SPRITES_32 = void 0;
+exports.SPRITES_96 = void 0;
 const vector_js_1 = require("../dist/vector.js");
-exports.SPRITES_32 = {
+//TODO: Create SPRITES_32 & SRITES_63
+exports.SPRITES_96 = {
     tileSize: new vector_js_1.Vector(32, 32),
     floor: {
         slit: [

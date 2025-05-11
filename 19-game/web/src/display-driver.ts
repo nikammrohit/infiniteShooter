@@ -1,5 +1,10 @@
-//TODO: import sprite, SPRITES_32, etc... from sprite.js
+import { SPRITES_96, Sprite, SpritePreset } from "./sprites.js"
 
-private drawSprite(sprite: Sprite, p:Vector) {
-  return 0
+type SpriteConfig = { scale: number, sprites: SpritePreset };
+
+export class DisplayDriver{
+
+  private drawSprite(sprite: Sprite, p:Vector) {
+    return 0;
+  }
 }

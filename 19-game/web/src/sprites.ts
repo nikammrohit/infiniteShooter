@@ -46,7 +46,9 @@ export type SpritePreset = {
   };
 }
 
-export const SPRITES_32: SpritePreset = {
+//TODO: Create SPRITES_32 & SRITES_63
+
+export const SPRITES_96: SpritePreset = {
   tileSize: new Vector(32, 32),
   floor: {
     slit: [

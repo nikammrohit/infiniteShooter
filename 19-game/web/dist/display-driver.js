@@ -1,6 +1,9 @@
 "use strict";
-//TODO: import sprite, SPRITES_32, etc... from sprite.js
-drawSprite(sprite, Sprite, p, Vector);
-{
-    return 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DisplayDriver = void 0;
+class DisplayDriver {
+    drawSprite(sprite, p) {
+        return 0;
+    }
 }
+exports.DisplayDriver = DisplayDriver;

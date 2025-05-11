@@ -7,3 +7,6 @@ export class Vector {
     this.y = y;
   }
 }
+
+//TODO: const IDX_TO_UNIT_VECTOR: map
+//TODO: unitVectorToIdx Function 
