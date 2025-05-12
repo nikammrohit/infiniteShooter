@@ -1,1 +1,1 @@
-git pull --rebase >> --pull
+git pull --rebase >> pull
