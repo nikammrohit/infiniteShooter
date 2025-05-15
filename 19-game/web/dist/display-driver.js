@@ -3,11 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DisplayDriver = void 0;
 class DisplayDriver {
     //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
-    constructor(ctx, spritesheet) {
+    constructor(ctx, spritesheet, config) {
         this.ctx = ctx;
         this.spritesheet = spritesheet;
+        this.sprites = config.sprites;
     }
     ;
+    draw() {
+        this.drawPlayer();
+    }
     //calculate width and height for each sprite (since it is diff for each animation frame)
     drawSprite(sprite, position) {
         var _a, _b;
@@ -21,11 +25,17 @@ class DisplayDriver {
         const dx = position.x + (((_a = sprite.offset) === null || _a === void 0 ? void 0 : _a.x) || 0);
         const dy = position.y + (((_b = sprite.offset) === null || _b === void 0 ? void 0 : _b.y) || 0);
         //scaling image
-        const dw = sw * this.scale;
-        const dh = sh * this.scale;
+        //const dw = sw * this.scale;
+        //const dh = sh * this.scale;
         this.ctx.imageSmoothingEnabled = false;
-        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy, dw, dh);
+        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy);
         return 0;
+    }
+    drawPlayer() {
+        const sprite = this.sprites.player.idle[0]; //FIXME: getPlayerSprites func
+        const position = new Vector(100, 100); //test screen pos
+        this.drawSprite(sprite, position);
     }
 }
 exports.DisplayDriver = DisplayDriver;
+//TODO: Function which draws sprite with input of its sprite and position

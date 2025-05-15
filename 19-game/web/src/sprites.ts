@@ -54,8 +54,8 @@ export const SPRITES_96: SpritePreset = {
     slit: [
       {
         start: new Vector(0, 0),
-        size: new Values(0, 0),
-        offset: new Values(0, 0),
+        size: new Vector(0, 0),
+        offset: new Vector(0, 0),
       }
     ],
     quad: [

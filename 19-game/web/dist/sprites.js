@@ -9,8 +9,8 @@ exports.SPRITES_96 = {
         slit: [
             {
                 start: new vector_js_1.Vector(0, 0),
-                size: new Values(0, 0),
-                offset: new Values(0, 0),
+                size: new vector_js_1.Vector(0, 0),
+                offset: new vector_js_1.Vector(0, 0),
             }
         ],
         quad: [

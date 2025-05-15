@@ -1,14 +1,25 @@
+//objs to draw & display
 import { SPRITES_96, Sprite, SpritePreset } from "./sprites.js"
 
 type SpriteConfig = { scale: number, sprites: SpritePreset };
 
 export class DisplayDriver {
-  //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
-  constructor(private ctx: CanvasRenderingContext2d, private spritesheet: HTMLImageElement) {
-  };
+    private sprites: SpritePreset;
 
-  //calculate width and height for each sprite (since it is diff for each animation frame)
-  private drawSprite(sprite: Sprite, position:Vector) {
+    //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
+    constructor(
+        private ctx: CanvasRenderingContext2d,
+        private spritesheet: HTMLImageElement,
+        config: SpriteConfig ) {
+            this.sprites = config.sprites;
+    };
+
+    public draw() {
+        this.drawPlayer();
+    }
+
+    //calculate width and height for each sprite (since it is diff for each animation frame)
+    private drawSprite(sprite: Sprite, position:Vector) {
         //get sprite coords from sprite sheet
         const sx = sprite.start.x;
         const sy = sprite.start.y;
@@ -22,11 +33,25 @@ export class DisplayDriver {
         const dy = position.y + (sprite.offset?.y || 0);
 
         //scaling image
-        const dw = sw * this.scale;
-        const dh = sh * this.scale;
+        //const dw = sw * this.scale;
+        //const dh = sh * this.scale;
 
         this.ctx.imageSmoothingEnabled = false;
-        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy, dw, dh);
-    return 0;
-  }
+        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy);
+        return 0;
+    }
+
+    private drawPlayer() {
+        const sprite: Sprite = this.sprites.player.idle[0]; //FIXME: getPlayerSprites func
+        const position: Vector = new Vector(100, 100); //test screen pos
+        this.drawSprite(sprite, position);
+    }
+    //private drawTiles() {}
+    //private drawUI() {}
+    //public draw() {}
+
+    //private getPlayerSprites() {}
 }
+
+
+//TODO: Function which draws sprite with input of its sprite and position

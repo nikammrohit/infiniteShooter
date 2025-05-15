@@ -1,4 +1,5 @@
 "use strict";
+//Resize screen and display state
 const canvas = document.getElementById("game");
 class Game {
     constructor(ctx, spritesheet) {

@@ -1,3 +1,4 @@
+//Resize screen and display state
 const canvas = document.getElementById("game");
 
 class Game {
