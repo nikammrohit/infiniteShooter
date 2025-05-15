@@ -1,5 +1,5 @@
 export class DisplayDriver {
-    //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
+    //recieves ctx, spritesheet, and SpritePreset(the vector data) by reference from Game obj instantiation to use
     constructor(ctx, spritesheet, sprites) {
         this.ctx = ctx;
         this.spritesheet = spritesheet;
@@ -9,6 +9,7 @@ export class DisplayDriver {
     draw(playerPosition, isMoving, animationFrame) {
         this.drawPlayer(playerPosition, isMoving, animationFrame);
     }
+    //blueprint to draw sprite on screen
     //calculate width and height for each sprite (since it is diff for each animation frame)
     drawSprite(sprite, position) {
         var _a, _b, _c;
@@ -31,6 +32,7 @@ export class DisplayDriver {
         this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy, sw, sh);
         return 0;
     }
+    //draw player with animations
     drawPlayer(playerPosition, isMoving, animationFrame) {
         const sprites = isMoving
             ? this.sprites.player.run //if moving run animation
@@ -40,4 +42,4 @@ export class DisplayDriver {
         this.drawSprite(sprite, playerPosition);
     }
 }
-//TODO: Function which draws sprite with input of its sprite and position
+//TODO: collisions and flip player on opposite left movement

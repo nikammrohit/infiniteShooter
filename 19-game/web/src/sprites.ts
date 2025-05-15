@@ -133,5 +133,3 @@ export const SPRITES_96: SpritePreset = {
     },
     //shield
 }
-
-//TODO: work on collisions, and flipping player when moving opp direction

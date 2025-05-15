@@ -85,4 +85,3 @@ export const SPRITES_96 = {
     },
     //shield
 };
-//TODO: work on collisions, and flipping player when moving opp direction

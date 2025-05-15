@@ -3,17 +3,18 @@ import { Vector } from "./vector.js"
 import { SPRITES_96, Sprite, SpritePreset } from "./sprites.js"
 
 export class DisplayDriver {
-    //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
+    //recieves ctx, spritesheet, and SpritePreset(the vector data) by reference from Game obj instantiation to use
     constructor(
         private ctx: CanvasRenderingContext2D,
         private spritesheet: HTMLImageElement,
-        private sprites: SpritePreset) {
+        private sprites: SpritePreset) { //allows us to use this.sprites for .player.run, .player.idle, etc...
      };
 
     public draw(playerPosition: Vector, isMoving: boolean, animationFrame: number) { //update player position from pass by reference values from game.ts
         this.drawPlayer(playerPosition, isMoving, animationFrame);
     }
 
+    //blueprint to draw sprite on screen
     //calculate width and height for each sprite (since it is diff for each animation frame)
     private drawSprite(sprite: Sprite, position:Vector) {
         //get sprite coords from sprite sheet
@@ -41,6 +42,7 @@ export class DisplayDriver {
         return 0;
     }
 
+    //draw player with animations
     private drawPlayer(playerPosition: Vector, isMoving: boolean, animationFrame: number) {
         const sprites = isMoving
         ? this.sprites.player.run //if moving run animation
@@ -59,4 +61,4 @@ export class DisplayDriver {
 }
 
 
-//TODO: Function which draws sprite with input of its sprite and position
+//TODO: collisions and flip player on opposite left movement
