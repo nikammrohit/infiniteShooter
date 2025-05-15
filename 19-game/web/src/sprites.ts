@@ -4,7 +4,7 @@ import { Vector } from "../dist/vector.js"
 export type Sprite = {
   start: Vector;
   size: Vector;
-  offset: Vector;
+  offset?: Vector; //offset optional for now
 };
 
 export type SpritePreset = {
@@ -46,7 +46,7 @@ export type SpritePreset = {
   };
 }
 
-//TODO: Create SPRITES_32 & SRITES_63
+//TODO: Create SPRITES_32 & SRITES_63 if I want zooming or diff sizes
 
 export const SPRITES_96: SpritePreset = {
   tileSize: new Vector(32, 32),

@@ -2,14 +2,16 @@ const canvas = document.getElementById("game");
 
 
 class Game {
-  ctx: CanvasRenderingContext2d
+  ctx: CanvasRenderingContext2d;
+  display: DisplayDriver;
 
-  constructor(ctx: CanvasRenderingContext2d) {
+  constructor(ctx: CanvasRenderingContext2d, spritesheet: HTMLImageElement) {
     this.ctx = ctx;
+    this.display = new DisplayDriver(ctx, spritesheet);
     window.addEventListener("resize", () => this.resize()); //call resize when window resizes
     requestAnimationFrame(() => this.draw()); //draw next frame before displaying the next frame
   }
-  
+
   //update frame
   draw() {
     console.log("Drawing...");
@@ -28,7 +30,7 @@ class Game {
     console.log("Resizing...");
     const boundingBox = canvas.parentElement!.getBoundingClientRect(); //get px size and pos of parent wrapper (full vh and vw)
     const pixelRatio = window.devicePixelRatio; //get resolution of curr display
-    
+
     //set resolution
     this.ctx.canvas.width = boundingBox.width * pixelRatio; //multiply by pixel ratio
     this.ctx.canvas.height = boundingBox.height * pixelRatio;
@@ -44,7 +46,7 @@ function start() {
   if (canvas.getContext) { // Ensure browser supports html canvas
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2d; // Access context of canvas (type assertion)
 
-    const game = new Game(ctx);
+    const game = new Game(ctx, spritesheet);
 
   } else {
     console.log("This browser does not support html canvas.");
