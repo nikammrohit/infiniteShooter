@@ -9,4 +9,4 @@ export class Vector {
 }
 
 //TODO: const IDX_TO_UNIT_VECTOR: map
-//TODO: unitVectorToIdx Function 
+//TODO: unitVectorToIdx Function

@@ -91,7 +91,23 @@ export const SPRITES_96: SpritePreset = {
       {
         start: new Vector(29, 239),
         size: new Vector(66, 288),
-      }
+      },
+      {
+        start: new Vector(125, 233),
+        size: new Vector(165, 288),
+      },
+      {
+        start: new Vector(221, 239),
+        size: new Vector(261, 288),
+      },
+      {
+        start: new Vector(317, 233),
+        size: new Vector(357, 288),
+      },
+      {
+        start: new Vector(413, 233),
+        size: new Vector(453, 288),
+      },
     ]
     //etc...
   },
