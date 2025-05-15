@@ -2,7 +2,10 @@ import { SPRITES_96, Sprite, SpritePreset } from "./sprites.js"
 
 type SpriteConfig = { scale: number, sprites: SpritePreset };
 
-export class DisplayDriver { //pass ctx to displaydriver from Game class
+export class DisplayDriver {
+  //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
+  constructor(private ctx: CanvasRenderingContext2d, private spritesheet: HTMLImageElement) {
+  };
 
   //calculate width and height for each sprite (since it is diff for each animation frame)
   private drawSprite(sprite: Sprite, position:Vector) {

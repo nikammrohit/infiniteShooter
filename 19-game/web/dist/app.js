@@ -1,8 +1,9 @@
 "use strict";
 const canvas = document.getElementById("game");
 class Game {
-    constructor(ctx) {
+    constructor(ctx, spritesheet) {
         this.ctx = ctx;
+        this.spritesheet = spritesheet;
         window.addEventListener("resize", () => this.resize()); //call resize when window resizes
         requestAnimationFrame(() => this.draw()); //draw next frame before displaying the next frame
     }
@@ -32,7 +33,11 @@ class Game {
 function start() {
     if (canvas.getContext) { // Ensure browser supports html canvas
         const ctx = canvas.getContext("2d"); // Access context of canvas (type assertion)
-        const game = new Game(ctx);
+        const spritesheet = new Image();
+        spritesheet.src = "./assets/sprites/rogue/Players/players blue x3.png";
+        spritesheet.onload = () => {
+            const game = new Game(ctx, spritesheet);
+        };
     }
     else {
         console.log("This browser does not support html canvas.");

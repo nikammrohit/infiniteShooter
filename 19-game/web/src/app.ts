@@ -1,13 +1,9 @@
 const canvas = document.getElementById("game");
 
-
 class Game {
   ctx: CanvasRenderingContext2d;
-  display: DisplayDriver;
 
-  constructor(ctx: CanvasRenderingContext2d, spritesheet: HTMLImageElement) {
-    this.ctx = ctx;
-    this.display = new DisplayDriver(ctx, spritesheet);
+  constructor(private ctx: CanvasRenderingContext2d, private spritesheet: HTMLImageElement) {
     window.addEventListener("resize", () => this.resize()); //call resize when window resizes
     requestAnimationFrame(() => this.draw()); //draw next frame before displaying the next frame
   }
@@ -46,7 +42,12 @@ function start() {
   if (canvas.getContext) { // Ensure browser supports html canvas
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2d; // Access context of canvas (type assertion)
 
-    const game = new Game(ctx, spritesheet);
+    const spritesheet = new Image();
+    spritesheet.src = "./assets/sprites/rogue/Players/players blue x3.png";
+
+    spritesheet.onload = () => { //FIXME: game not loading
+        const game = new Game(ctx, spritesheet);
+    };
 
   } else {
     console.log("This browser does not support html canvas.");

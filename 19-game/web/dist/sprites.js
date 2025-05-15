@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SPRITES_96 = void 0;
 const vector_js_1 = require("../dist/vector.js");
-//TODO: Create SPRITES_32 & SRITES_63
+//TODO: Create SPRITES_32 & SRITES_63 if I want zooming or diff sizes
 exports.SPRITES_96 = {
     tileSize: new vector_js_1.Vector(32, 32),
     floor: {
@@ -46,7 +46,23 @@ exports.SPRITES_96 = {
             {
                 start: new vector_js_1.Vector(29, 239),
                 size: new vector_js_1.Vector(66, 288),
-            }
+            },
+            {
+                start: new vector_js_1.Vector(125, 233),
+                size: new vector_js_1.Vector(165, 288),
+            },
+            {
+                start: new vector_js_1.Vector(221, 239),
+                size: new vector_js_1.Vector(261, 288),
+            },
+            {
+                start: new vector_js_1.Vector(317, 233),
+                size: new vector_js_1.Vector(357, 288),
+            },
+            {
+                start: new vector_js_1.Vector(413, 233),
+                size: new vector_js_1.Vector(453, 288),
+            },
         ]
         //etc...
     },
