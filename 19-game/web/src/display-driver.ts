@@ -1,21 +1,16 @@
-//objs to draw & display
+//behind the scenes: objs to draw & display
 import { Vector } from "./vector.js"
 import { SPRITES_96, Sprite, SpritePreset } from "./sprites.js"
 
-type SpriteConfig = { sprites: SpritePreset }; //removed scale: number
-
 export class DisplayDriver {
-    private sprites: SpritePreset;
-
     //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
     constructor(
         private ctx: CanvasRenderingContext2D,
         private spritesheet: HTMLImageElement,
-        config: SpriteConfig ) {
-            this.sprites = config.sprites;
-    };
+        private sprites: SpritePreset) {
+     };
 
-    public draw(playerPosition: Vector, isMoving: boolean, animationFrame: number) { //update player position by Vector values from game.ts
+    public draw(playerPosition: Vector, isMoving: boolean, animationFrame: number) { //update player position from pass by reference values from game.ts
         this.drawPlayer(playerPosition, isMoving, animationFrame);
     }
 
@@ -46,15 +41,15 @@ export class DisplayDriver {
         return 0;
     }
 
-    private drawPlayer(position: Vector, isMoving: boolean, frame: number) {
+    private drawPlayer(playerPosition: Vector, isMoving: boolean, animationFrame: number) {
         const sprites = isMoving
         ? this.sprites.player.run //if moving run animation
         : this.sprites.player.idle; //if still idle
 
-        const index = frame % sprites.length;
+        const index = animationFrame % sprites.length; //modulo to loop animationFrames and calc which frame we need (ex: )
         const sprite = sprites[index];
 
-        this.drawSprite(sprite, position);
+        this.drawSprite(sprite, playerPosition);
     }
     //private drawTiles() {}
     //private drawUI() {}

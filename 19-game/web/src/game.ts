@@ -11,16 +11,14 @@ export class Game {
     private keysPressed: Set<string> = new Set(); //"set" to hold curr key so position retrieved every frame rather than just once on keydown
 
     constructor(private ctx: CanvasRenderingContext2d, private spritesheet: HTMLImageElement) {
-        this.display = new DisplayDriver(ctx, spritesheet, {
-            sprites: SPRITES_96,
-        });
+        this.display = new DisplayDriver(ctx, spritesheet, SPRITES_96);
 
         window.addEventListener("resize", () => this.resize()); //call resize when window resizes
         window.addEventListener("keydown", (e) => this.keysPressed.add(e.key)); //add current key
         window.addEventListener("keyup", (e) => this.keysPressed.delete(e.key));
         this.resize(); //resize on page load
 
-        requestAnimationFrame((t) => this.draw(t)); //draw next frame before displaying the next frame. t for delta time based movement
+        requestAnimationFrame((t) => this.draw(t)); //draw next frame before displaying the next frame. pass in t so we can use time passed in browser
     }
 
     //state
@@ -56,9 +54,9 @@ export class Game {
     private draw(time: number) {
         this.playerMovement(); //move player based on keys
 
-        //find delta time for frame animations
-        const ANIM_SPEED = 150;
-        if (time - this.lastAnimTime > ANIM_SPEED) {
+        //TODO: used delta time for frame animations
+        const ANIM_SPEED = 100; //animation speed (10fps or 100ms between frames)
+        if (time - this.lastAnimTime > ANIM_SPEED) { //if more than 100ms since last frame has passed then show next sprite animationFrame & reset lastAnimTime to curr time(auto given by browser)
             this.animationFrame++;
             this.lastAnimTime = time;
         }

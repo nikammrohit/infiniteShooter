@@ -1,9 +1,9 @@
 export class DisplayDriver {
     //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
-    constructor(ctx, spritesheet, config) {
+    constructor(ctx, spritesheet, sprites) {
         this.ctx = ctx;
         this.spritesheet = spritesheet;
-        this.sprites = config.sprites;
+        this.sprites = sprites;
     }
     ;
     draw(playerPosition, isMoving, animationFrame) {
@@ -31,13 +31,13 @@ export class DisplayDriver {
         this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy, sw, sh);
         return 0;
     }
-    drawPlayer(position, isMoving, frame) {
+    drawPlayer(playerPosition, isMoving, animationFrame) {
         const sprites = isMoving
             ? this.sprites.player.run //if moving run animation
             : this.sprites.player.idle; //if still idle
-        const index = frame % sprites.length;
+        const index = animationFrame % sprites.length; //modulo to loop animationFrames and calc which frame we need (ex: )
         const sprite = sprites[index];
-        this.drawSprite(sprite, position);
+        this.drawSprite(sprite, playerPosition);
     }
 }
 //TODO: Function which draws sprite with input of its sprite and position

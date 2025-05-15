@@ -134,5 +134,4 @@ export const SPRITES_96: SpritePreset = {
     //shield
 }
 
-//NEXT: Finish Sprites_32 and get vectors from image.
-//THEN: figure out how to draw sprites on screen(display_drivers), then work on collisions and player movements.
+//TODO: work on collisions, and flipping player when moving opp direction
