@@ -1,7 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DisplayDriver = void 0;
-class DisplayDriver {
+//objs to draw & display
+import { Vector } from "./vector.js";
+export class DisplayDriver {
     //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
     constructor(ctx, spritesheet, config) {
         this.ctx = ctx;
@@ -28,7 +27,7 @@ class DisplayDriver {
         //const dw = sw * this.scale;
         //const dh = sh * this.scale;
         this.ctx.imageSmoothingEnabled = false;
-        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy);
+        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy, sw, sh);
         return 0;
     }
     drawPlayer() {
@@ -37,5 +36,4 @@ class DisplayDriver {
         this.drawSprite(sprite, position);
     }
 }
-exports.DisplayDriver = DisplayDriver;
 //TODO: Function which draws sprite with input of its sprite and position

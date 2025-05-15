@@ -1,4 +1,4 @@
-import { Vector } from "../dist/vector.js"
+import { Vector } from "./vector.js"
 
 //create obj sprite
 export type Sprite = {

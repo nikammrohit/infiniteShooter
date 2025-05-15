@@ -1,14 +1,15 @@
 //objs to draw & display
+import { Vector } from "./vector.js"
 import { SPRITES_96, Sprite, SpritePreset } from "./sprites.js"
 
-type SpriteConfig = { scale: number, sprites: SpritePreset };
+type SpriteConfig = { sprites: SpritePreset }; //removed scale: number
 
 export class DisplayDriver {
     private sprites: SpritePreset;
 
     //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
     constructor(
-        private ctx: CanvasRenderingContext2d,
+        private ctx: CanvasRenderingContext2D,
         private spritesheet: HTMLImageElement,
         config: SpriteConfig ) {
             this.sprites = config.sprites;
@@ -37,7 +38,7 @@ export class DisplayDriver {
         //const dh = sh * this.scale;
 
         this.ctx.imageSmoothingEnabled = false;
-        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy);
+        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy, sw, sh);
         return 0;
     }
 

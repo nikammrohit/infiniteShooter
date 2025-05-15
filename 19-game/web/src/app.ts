@@ -1,52 +1,16 @@
 //Resize screen and display state
-const canvas = document.getElementById("game");
+import { Game } from "./game.js";
 
-class Game {
-  ctx: CanvasRenderingContext2d;
-
-  constructor(private ctx: CanvasRenderingContext2d, private spritesheet: HTMLImageElement) {
-    window.addEventListener("resize", () => this.resize()); //call resize when window resizes
-    requestAnimationFrame(() => this.draw()); //draw next frame before displaying the next frame
-  }
-
-  //update frame
-  draw() {
-    console.log("Drawing...");
-    //fill window black
-    this.ctx.fillStyle = "black";
-    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-
-    //create smaller white window
-    this.ctx.fillStyle = "white";
-    this.ctx.fillRect(0, 0, this.ctx.canvas.width - 20, this.ctx.canvas.height - 20);
-
-  }
-
-  //resize screen
-  resize() {
-    console.log("Resizing...");
-    const boundingBox = canvas.parentElement!.getBoundingClientRect(); //get px size and pos of parent wrapper (full vh and vw)
-    const pixelRatio = window.devicePixelRatio; //get resolution of curr display
-
-    //set resolution
-    this.ctx.canvas.width = boundingBox.width * pixelRatio; //multiply by pixel ratio
-    this.ctx.canvas.height = boundingBox.height * pixelRatio;
-
-    //set size of display
-    this.ctx.canvas.style.width = `${boundingBox.width}px`;
-    this.ctx.canvas.style.height = `${boundingBox.height}px`;
-  }
-
-}
+const canvas = document.getElementById("game") as HTMLCanvasElement; //assert element is a <canvas> and therefore has getContext()
 
 function start() {
   if (canvas.getContext) { // Ensure browser supports html canvas
-    const ctx = canvas.getContext("2d") as CanvasRenderingContext2d; // Access context of canvas (type assertion)
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D; // Access context of canvas (type assertion)
 
     const spritesheet = new Image();
     spritesheet.src = "./assets/sprites/rogue/Players/players blue x3.png";
 
-    spritesheet.onload = () => { //FIXME: game not loading
+    spritesheet.onload = () => {
         const game = new Game(ctx, spritesheet);
     };
 

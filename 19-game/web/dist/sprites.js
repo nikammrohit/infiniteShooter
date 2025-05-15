@@ -1,16 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SPRITES_96 = void 0;
-const vector_js_1 = require("../dist/vector.js");
+import { Vector } from "./vector.js";
 //TODO: Create SPRITES_32 & SRITES_63 if I want zooming or diff sizes
-exports.SPRITES_96 = {
-    tileSize: new vector_js_1.Vector(32, 32),
+export const SPRITES_96 = {
+    tileSize: new Vector(32, 32),
     floor: {
         slit: [
             {
-                start: new vector_js_1.Vector(0, 0),
-                size: new vector_js_1.Vector(0, 0),
-                offset: new vector_js_1.Vector(0, 0),
+                start: new Vector(0, 0),
+                size: new Vector(0, 0),
+                offset: new Vector(0, 0),
             }
         ],
         quad: [
@@ -25,43 +22,43 @@ exports.SPRITES_96 = {
     player: {
         idle: [
             {
-                start: new vector_js_1.Vector(29, 47),
-                size: new vector_js_1.Vector(66, 96),
+                start: new Vector(29, 47),
+                size: new Vector(66, 96),
                 //offset:
             }
         ],
         talk: [
             {
-                start: new vector_js_1.Vector(29, 143),
-                size: new vector_js_1.Vector(66, 192),
+                start: new Vector(29, 143),
+                size: new Vector(66, 192),
                 //offset:
             },
             {
-                start: new vector_js_1.Vector(125, 143),
-                size: new vector_js_1.Vector(162, 192),
+                start: new Vector(125, 143),
+                size: new Vector(162, 192),
                 //offset:
             }
         ],
         reload: [
             {
-                start: new vector_js_1.Vector(29, 239),
-                size: new vector_js_1.Vector(66, 288),
+                start: new Vector(29, 239),
+                size: new Vector(66, 288),
             },
             {
-                start: new vector_js_1.Vector(125, 233),
-                size: new vector_js_1.Vector(165, 288),
+                start: new Vector(125, 233),
+                size: new Vector(165, 288),
             },
             {
-                start: new vector_js_1.Vector(221, 239),
-                size: new vector_js_1.Vector(261, 288),
+                start: new Vector(221, 239),
+                size: new Vector(261, 288),
             },
             {
-                start: new vector_js_1.Vector(317, 233),
-                size: new vector_js_1.Vector(357, 288),
+                start: new Vector(317, 233),
+                size: new Vector(357, 288),
             },
             {
-                start: new vector_js_1.Vector(413, 233),
-                size: new vector_js_1.Vector(453, 288),
+                start: new Vector(413, 233),
+                size: new Vector(453, 288),
             },
         ]
         //etc...
