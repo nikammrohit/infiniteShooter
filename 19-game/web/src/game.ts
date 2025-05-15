@@ -23,30 +23,56 @@ export class Game {
         requestAnimationFrame((t) => this.draw(t)); //draw next frame before displaying the next frame. t for delta time based movement
     }
 
+    //state
+    private isMoving = false;
+    private animationFrame = 0;
+    private lastAnimTime = 0;
+
     private playerPosition = new Vector (100 , 100); //init player position
 
     private playerMovement(e: KeyboardEvent) {
         const speed = 4;
-        if (this.keysPressed.has("ArrowUp")) this.playerPosition.y -= speed;
-        if (this.keysPressed.has("ArrowDown")) this.playerPosition.y += speed;
-        if (this.keysPressed.has("ArrowLeft")) this.playerPosition.x -= speed;
-        if (this.keysPressed.has("ArrowRight")) this.playerPosition.x += speed;
+        this.isMoving = false;
+
+        if (this.keysPressed.has("ArrowUp")) {
+            this.playerPosition.y -= speed;
+            this.isMoving = true;
+        }
+        if (this.keysPressed.has("ArrowDown")) {
+            this.playerPosition.y += speed;
+            this.isMoving = true;
+        }
+        if (this.keysPressed.has("ArrowLeft")) {
+            this.playerPosition.x -= speed;
+            this.isMoving = true;
+        }
+        if (this.keysPressed.has("ArrowRight")) {
+            this.playerPosition.x += speed;
+            this.isMoving = true;
+        }
     }
 
     //update frame
     private draw(time: number) {
         this.playerMovement(); //move player based on keys
 
+        //find delta time for frame animations
+        const ANIM_SPEED = 150;
+        if (time - this.lastAnimTime > ANIM_SPEED) {
+            this.animationFrame++;
+            this.lastAnimTime = time;
+        }
+
         console.log("Drawing...");
         //fill window black
         this.ctx.fillStyle = "black";
-         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
         //create smaller white window
-        this.ctx.fillStyle = "white";
+        this.ctx.fillStyle = "gray";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width - 20, this.ctx.canvas.height - 20);
 
-        this.display.draw(this.playerPosition); //send updated playerposition to display-driver
+        this.display.draw(this.playerPosition, this.isMoving, this.animationFrame); //send updated playerposition to display-driver
 
         requestAnimationFrame((t) => this.draw(t));
 

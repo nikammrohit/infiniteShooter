@@ -9,6 +9,10 @@ export class Game {
         this.ctx = ctx;
         this.spritesheet = spritesheet;
         this.keysPressed = new Set(); //"set" to hold curr key so position retrieved every frame rather than just once on keydown
+        //state
+        this.isMoving = false;
+        this.animationFrame = 0;
+        this.lastAnimTime = 0;
         this.playerPosition = new Vector(100, 100); //init player position
         this.display = new DisplayDriver(ctx, spritesheet, {
             sprites: SPRITES_96,
@@ -21,26 +25,41 @@ export class Game {
     }
     playerMovement(e) {
         const speed = 4;
-        if (this.keysPressed.has("ArrowUp"))
+        this.isMoving = false;
+        if (this.keysPressed.has("ArrowUp")) {
             this.playerPosition.y -= speed;
-        if (this.keysPressed.has("ArrowDown"))
+            this.isMoving = true;
+        }
+        if (this.keysPressed.has("ArrowDown")) {
             this.playerPosition.y += speed;
-        if (this.keysPressed.has("ArrowLeft"))
+            this.isMoving = true;
+        }
+        if (this.keysPressed.has("ArrowLeft")) {
             this.playerPosition.x -= speed;
-        if (this.keysPressed.has("ArrowRight"))
+            this.isMoving = true;
+        }
+        if (this.keysPressed.has("ArrowRight")) {
             this.playerPosition.x += speed;
+            this.isMoving = true;
+        }
     }
     //update frame
     draw(time) {
         this.playerMovement(); //move player based on keys
+        //find delta time for frame animations
+        const ANIM_SPEED = 150;
+        if (time - this.lastAnimTime > ANIM_SPEED) {
+            this.animationFrame++;
+            this.lastAnimTime = time;
+        }
         console.log("Drawing...");
         //fill window black
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
         //create smaller white window
-        this.ctx.fillStyle = "white";
+        this.ctx.fillStyle = "gray";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width - 20, this.ctx.canvas.height - 20);
-        this.display.draw(this.playerPosition); //send updated playerposition to display-driver
+        this.display.draw(this.playerPosition, this.isMoving, this.animationFrame); //send updated playerposition to display-driver
         requestAnimationFrame((t) => this.draw(t));
     }
     //resize screen

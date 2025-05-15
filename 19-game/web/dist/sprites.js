@@ -12,7 +12,9 @@ export const SPRITES_96 = {
         ],
         quad: [
             {
-            //INSERT START SIZE OFFSTE
+                start: new Vector(0, 0),
+                size: new Vector(0, 0),
+                offset: new Vector(0, 0),
             }
         ],
         //quad
@@ -24,19 +26,16 @@ export const SPRITES_96 = {
             {
                 start: new Vector(29, 47),
                 size: new Vector(66, 96),
-                //offset:
             }
         ],
         talk: [
             {
                 start: new Vector(29, 143),
                 size: new Vector(66, 192),
-                //offset:
             },
             {
                 start: new Vector(125, 143),
                 size: new Vector(162, 192),
-                //offset:
             }
         ],
         reload: [
@@ -60,8 +59,29 @@ export const SPRITES_96 = {
                 start: new Vector(413, 233),
                 size: new Vector(453, 288),
             },
+        ],
+        run: [
+            {
+                start: new Vector(32, 323),
+                size: new Vector(63, 384),
+                offset: new Vector(0, 12)
+            },
+            {
+                start: new Vector(125, 335),
+                size: new Vector(162, 384),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(215, 323),
+                size: new Vector(258, 384),
+                offset: new Vector(0, 12)
+            },
+            {
+                start: new Vector(317, 335),
+                size: new Vector(354, 384),
+                offset: new Vector(0, 0)
+            },
         ]
-        //etc...
     },
     //shield
 };

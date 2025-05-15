@@ -15,8 +15,8 @@ export class DisplayDriver {
             this.sprites = config.sprites;
     };
 
-    public draw(playerPosition: Vector) { //update player position by Vector values from game.ts
-        this.drawPlayer(playerPosition);
+    public draw(playerPosition: Vector, isMoving: boolean, animationFrame: number) { //update player position by Vector values from game.ts
+        this.drawPlayer(playerPosition, isMoving, animationFrame);
     }
 
     //calculate width and height for each sprite (since it is diff for each animation frame)
@@ -29,9 +29,13 @@ export class DisplayDriver {
         const sw = sprite.size.x - sx;
         const sh = sprite.size.y - sy;
 
-        //get screen position to place sprite (including offset)
-        const dx = position.x + (sprite.offset?.x || 0);
-        const dy = position.y + (sprite.offset?.y || 0);
+        //get screen position to place sprite
+        const dx = position.x;
+        const dy = position.y - (sprite.offset?.y || 0);
+
+        //offset handling if exists
+        const offsetX = sprite.offset?.x || 0;
+        const offsetY = sprite.offset?.y || 0;
 
         //scaling image
         //const dw = sw * this.scale;
@@ -42,8 +46,14 @@ export class DisplayDriver {
         return 0;
     }
 
-    private drawPlayer(position: Vector) {
-        const sprite: Sprite = this.sprites.player.idle[0]; //FIXME: getPlayerSprites func
+    private drawPlayer(position: Vector, isMoving: boolean, frame: number) {
+        const sprites = isMoving
+        ? this.sprites.player.run //if moving run animation
+        : this.sprites.player.idle; //if still idle
+
+        const index = frame % sprites.length;
+        const sprite = sprites[index];
+
         this.drawSprite(sprite, position);
     }
     //private drawTiles() {}
