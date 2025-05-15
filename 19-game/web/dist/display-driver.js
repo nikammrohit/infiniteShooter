@@ -1,5 +1,3 @@
-//objs to draw & display
-import { Vector } from "./vector.js";
 export class DisplayDriver {
     //pass ctx and spritesheet by reference to displaydriver from Game class so we can use it here
     constructor(ctx, spritesheet, config) {
@@ -8,8 +6,8 @@ export class DisplayDriver {
         this.sprites = config.sprites;
     }
     ;
-    draw() {
-        this.drawPlayer();
+    draw(playerPosition) {
+        this.drawPlayer(playerPosition);
     }
     //calculate width and height for each sprite (since it is diff for each animation frame)
     drawSprite(sprite, position) {
@@ -30,9 +28,8 @@ export class DisplayDriver {
         this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy, sw, sh);
         return 0;
     }
-    drawPlayer() {
+    drawPlayer(position) {
         const sprite = this.sprites.player.idle[0]; //FIXME: getPlayerSprites func
-        const position = new Vector(100, 100); //test screen pos
         this.drawSprite(sprite, position);
     }
 }

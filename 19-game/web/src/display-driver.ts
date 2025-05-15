@@ -15,8 +15,8 @@ export class DisplayDriver {
             this.sprites = config.sprites;
     };
 
-    public draw() {
-        this.drawPlayer();
+    public draw(playerPosition: Vector) { //update player position by Vector values from game.ts
+        this.drawPlayer(playerPosition);
     }
 
     //calculate width and height for each sprite (since it is diff for each animation frame)
@@ -42,9 +42,8 @@ export class DisplayDriver {
         return 0;
     }
 
-    private drawPlayer() {
+    private drawPlayer(position: Vector) {
         const sprite: Sprite = this.sprites.player.idle[0]; //FIXME: getPlayerSprites func
-        const position: Vector = new Vector(100, 100); //test screen pos
         this.drawSprite(sprite, position);
     }
     //private drawTiles() {}

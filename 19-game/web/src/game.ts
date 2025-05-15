@@ -8,6 +8,7 @@ import { DisplayDriver } from "./display-driver.js";
 
 export class Game {
     private display: DisplayDriver; //instance of DisplayDriver
+    private keysPressed: Set<string> = new Set(); //"set" to hold curr key so position retrieved every frame rather than just once on keydown
 
     constructor(private ctx: CanvasRenderingContext2d, private spritesheet: HTMLImageElement) {
         this.display = new DisplayDriver(ctx, spritesheet, {
@@ -15,13 +16,27 @@ export class Game {
         });
 
         window.addEventListener("resize", () => this.resize()); //call resize when window resizes
+        window.addEventListener("keydown", (e) => this.keysPressed.add(e.key)); //add current key
+        window.addEventListener("keyup", (e) => this.keysPressed.delete(e.key));
         this.resize(); //resize on page load
 
         requestAnimationFrame((t) => this.draw(t)); //draw next frame before displaying the next frame. t for delta time based movement
     }
 
+    private playerPosition = new Vector (100 , 100); //init player position
+
+    private playerMovement(e: KeyboardEvent) {
+        const speed = 4;
+        if (this.keysPressed.has("ArrowUp")) this.playerPosition.y -= speed;
+        if (this.keysPressed.has("ArrowDown")) this.playerPosition.y += speed;
+        if (this.keysPressed.has("ArrowLeft")) this.playerPosition.x -= speed;
+        if (this.keysPressed.has("ArrowRight")) this.playerPosition.x += speed;
+    }
+
     //update frame
     private draw(time: number) {
+        this.playerMovement(); //move player based on keys
+
         console.log("Drawing...");
         //fill window black
         this.ctx.fillStyle = "black";
@@ -31,7 +46,7 @@ export class Game {
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width - 20, this.ctx.canvas.height - 20);
 
-        this.display.draw();
+        this.display.draw(this.playerPosition); //send updated playerposition to display-driver
 
         requestAnimationFrame((t) => this.draw(t));
 
