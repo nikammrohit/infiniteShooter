@@ -10,7 +10,7 @@ export class Game {
     private display: DisplayDriver; //instance of DisplayDriver
     private keysPressed: Set<string> = new Set(); //"set" to hold curr key so position retrieved every frame rather than just once on keydown
 
-    constructor(private ctx: CanvasRenderingContext2d, private spritesheet: HTMLImageElement) {
+    constructor(private ctx: CanvasRenderingContext2D, private spritesheet: HTMLImageElement) {
         this.display = new DisplayDriver(ctx, spritesheet, SPRITES_96);
 
         window.addEventListener("resize", () => this.resize()); //call resize when window resizes
@@ -23,7 +23,7 @@ export class Game {
 
     //state
     private isMoving = false;
-    private reversed = false;
+    private isReversed = false;
     private animationFrame = 0;
     private lastAnimTime = 0;
 
@@ -44,12 +44,12 @@ export class Game {
         if (this.keysPressed.has("ArrowLeft")) {
             this.playerPosition.x -= speed;
             this.isMoving = true;
-            this.reversed = true;
+            this.isReversed = true;
         }
         if (this.keysPressed.has("ArrowRight")) {
             this.playerPosition.x += speed;
             this.isMoving = true;
-            this.reversed = false;
+            this.isReversed = false;
         }
     }
 
@@ -73,7 +73,7 @@ export class Game {
         this.ctx.fillStyle = "gray";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width - 20, this.ctx.canvas.height - 20);
 
-        this.display.draw(this.playerPosition, this.isMoving, this.animationFrame); //send updated playerposition to display-driver
+        this.display.draw(this.playerPosition, this.isMoving, this.isReversed, this.animationFrame); //send updated playerposition to display-driver
 
         requestAnimationFrame((t) => this.draw(t));
 

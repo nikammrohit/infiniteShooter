@@ -6,12 +6,12 @@ export class DisplayDriver {
         this.sprites = sprites;
     }
     ;
-    draw(playerPosition, isMoving, animationFrame) {
-        this.drawPlayer(playerPosition, isMoving, animationFrame);
+    draw(playerPosition, isMoving, isReversed, animationFrame) {
+        this.drawPlayer(playerPosition, isMoving, isReversed, animationFrame);
     }
     //blueprint to draw sprite on screen
     //calculate width and height for each sprite (since it is diff for each animation frame)
-    drawSprite(sprite, position) {
+    drawSprite(sprite, position, isReversed) {
         var _a, _b, _c;
         //get sprite coords from sprite sheet
         const sx = sprite.start.x;
@@ -28,19 +28,25 @@ export class DisplayDriver {
         //scaling image
         //const dw = sw * this.scale;
         //const dh = sh * this.scale;
+        this.ctx.save(); //save curr context state
+        //reverse sprite if it needs to
+        if (isReversed) {
+            this.ctx.scale(-1, 1); //flip sprite horizontally (mirror image over x axis (-1) but keep y axis normal (1)
+            this.ctx.translate(-dx - sw, 0); //move canvas and origin to location of sprite, so we can see it, since its been flipped over the x axis. 0 means no vertical shift
+        }
         this.ctx.imageSmoothingEnabled = false;
-        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, dx, dy, sw, sh);
+        this.ctx.drawImage(this.spritesheet, sx, sy, sw, sh, isReversed ? 0 : dx, dy, sw, sh); //if reversed draw dx at 0 since we alr translated canvas
+        this.ctx.restore(); //after drawing return to previously saved state so player can run without being flipped if need be
         return 0;
     }
     //draw player with animations
-    drawPlayer(playerPosition, isMoving, animationFrame) {
-        //TODO: if reversed = true flip sprite otherwise keep it same. check boolean and if true then change sprite we sleecting but keep rest same
+    drawPlayer(playerPosition, isMoving, isReversed, animationFrame) {
         const sprites = isMoving
             ? this.sprites.player.run //if moving run animation
             : this.sprites.player.idle; //if still idle
-        const index = animationFrame % sprites.length; //modulo to loop animationFrames and calc which frame we need (ex: )
+        const index = animationFrame % sprites.length; //modulo to loop animationFrames and calc which frame we need
         const sprite = sprites[index];
-        this.drawSprite(sprite, playerPosition);
+        this.drawSprite(sprite, playerPosition, isReversed);
     }
 }
 //TODO: collisions and flip player on opposite left movement

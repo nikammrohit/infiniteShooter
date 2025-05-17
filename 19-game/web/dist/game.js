@@ -11,7 +11,7 @@ export class Game {
         this.keysPressed = new Set(); //"set" to hold curr key so position retrieved every frame rather than just once on keydown
         //state
         this.isMoving = false;
-        this.reversed = false;
+        this.isReversed = false;
         this.animationFrame = 0;
         this.lastAnimTime = 0;
         this.playerPosition = new Vector(100, 100); //init player position
@@ -36,12 +36,12 @@ export class Game {
         if (this.keysPressed.has("ArrowLeft")) {
             this.playerPosition.x -= speed;
             this.isMoving = true;
-            this.reversed = true;
+            this.isReversed = true;
         }
         if (this.keysPressed.has("ArrowRight")) {
             this.playerPosition.x += speed;
             this.isMoving = true;
-            this.reversed = false;
+            this.isReversed = false;
         }
     }
     //update frame
@@ -60,7 +60,7 @@ export class Game {
         //create smaller white window
         this.ctx.fillStyle = "gray";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width - 20, this.ctx.canvas.height - 20);
-        this.display.draw(this.playerPosition, this.isMoving, this.animationFrame); //send updated playerposition to display-driver
+        this.display.draw(this.playerPosition, this.isMoving, this.isReversed, this.animationFrame); //send updated playerposition to display-driver
         requestAnimationFrame((t) => this.draw(t));
     }
     //resize screen
