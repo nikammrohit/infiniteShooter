@@ -46,8 +46,6 @@ export type SpritePreset = {
     };
 };
 
-//TODO: Create SPRITES_32 & SRITES_63 if I want zooming or diff sizes
-
 export const SPRITES_96: SpritePreset = {
     tileSize: new Vector(32, 32),
     floor: {
@@ -129,7 +127,66 @@ export const SPRITES_96: SpritePreset = {
                 size: new Vector(354, 384),
                 offset: new Vector(0, 0)
             },
-        ]
+        ],
+        shoot: [
+            {
+                start: new Vector(23, 431),
+                size: new Vector(81, 480),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(119, 416),
+                size: new Vector(156, 480),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(221, 425),
+                size: new Vector(261, 480),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(317, 431),
+                size: new Vector(369, 480),
+                offset: new Vector(0, 0)
+            },
+        ],
+        death: [
+            {
+                start: new Vector(17, 527),
+                size: new Vector(75, 576),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(113, 515),
+                size: new Vector(171, 576),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(206, 512),
+                size: new Vector(270, 576),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(293, 494),
+                size: new Vector(378, 570),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(386, 482),
+                size: new Vector(474, 573),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(479, 482),
+                size: new Vector(576, 570),
+                offset: new Vector(0, 0)
+            },
+            {
+                start: new Vector(578, 485),
+                size: new Vector(669, 567),
+                offset: new Vector(0, 0)
+            },
+        ],
     },
-    //shield
+    //shield: {}
 }
