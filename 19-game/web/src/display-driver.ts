@@ -11,6 +11,7 @@ export class DisplayDriver {
      };
 
     public draw(playerPosition: Vector, isMoving: boolean, animationFrame: number) { //update player position from pass by reference values from game.ts
+
         this.drawPlayer(playerPosition, isMoving, animationFrame);
     }
 
@@ -44,6 +45,9 @@ export class DisplayDriver {
 
     //draw player with animations
     private drawPlayer(playerPosition: Vector, isMoving: boolean, animationFrame: number) {
+
+        //TODO: if reversed = true flip sprite otherwise keep it same. check boolean and if true then change sprite we sleecting but keep rest same
+
         const sprites = isMoving
         ? this.sprites.player.run //if moving run animation
         : this.sprites.player.idle; //if still idle

@@ -34,6 +34,7 @@ export class DisplayDriver {
     }
     //draw player with animations
     drawPlayer(playerPosition, isMoving, animationFrame) {
+        //TODO: if reversed = true flip sprite otherwise keep it same. check boolean and if true then change sprite we sleecting but keep rest same
         const sprites = isMoving
             ? this.sprites.player.run //if moving run animation
             : this.sprites.player.idle; //if still idle

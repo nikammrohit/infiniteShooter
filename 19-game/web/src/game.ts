@@ -23,6 +23,7 @@ export class Game {
 
     //state
     private isMoving = false;
+    private reversed = false;
     private animationFrame = 0;
     private lastAnimTime = 0;
 
@@ -43,10 +44,12 @@ export class Game {
         if (this.keysPressed.has("ArrowLeft")) {
             this.playerPosition.x -= speed;
             this.isMoving = true;
+            this.reversed = true;
         }
         if (this.keysPressed.has("ArrowRight")) {
             this.playerPosition.x += speed;
             this.isMoving = true;
+            this.reversed = false;
         }
     }
 

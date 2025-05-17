@@ -11,6 +11,7 @@ export class Game {
         this.keysPressed = new Set(); //"set" to hold curr key so position retrieved every frame rather than just once on keydown
         //state
         this.isMoving = false;
+        this.reversed = false;
         this.animationFrame = 0;
         this.lastAnimTime = 0;
         this.playerPosition = new Vector(100, 100); //init player position
@@ -35,10 +36,12 @@ export class Game {
         if (this.keysPressed.has("ArrowLeft")) {
             this.playerPosition.x -= speed;
             this.isMoving = true;
+            this.reversed = true;
         }
         if (this.keysPressed.has("ArrowRight")) {
             this.playerPosition.x += speed;
             this.isMoving = true;
+            this.reversed = false;
         }
     }
     //update frame
