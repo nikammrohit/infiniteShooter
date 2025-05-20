@@ -49,4 +49,4 @@ export class DisplayDriver {
         this.drawSprite(sprite, playerPosition, isReversed);
     }
 }
-//TODO: collisions and flip player on opposite left movement
+//TODO: collisions and borders of map and map size, camera to follow player, alg for enemies coming from various directions
