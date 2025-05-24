@@ -49,7 +49,8 @@ export class Game {
         this.playerMovement(); //move player based on keys
         //TODO: used delta time for frame animations
         const ANIM_SPEED = 100; //animation speed (10fps or 100ms between frames)
-        if (time - this.lastAnimTime > ANIM_SPEED) { //if more than 100ms since last frame has passed then show next sprite animationFrame & reset lastAnimTime to curr time(auto given by browser)
+        if (time - this.lastAnimTime > ANIM_SPEED) {
+            //if more than 100ms since last frame has passed then show next sprite animationFrame & reset lastAnimTime to curr time(auto given by browser)
             this.animationFrame++;
             this.lastAnimTime = time;
         }
